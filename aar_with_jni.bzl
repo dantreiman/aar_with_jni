@@ -1,21 +1,7 @@
 def aar_with_jni(name, android_library, custom_package="does.not.matter"):
-  native.genrule(
-      name = name + "_binary_manifest_generator",
-      outs = [name + "_generated_AndroidManifest.xml"],
-      cmd = """
-cat > $(OUTS) <<EOF
-<manifest
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  package="{}">
-  <uses-sdk android:minSdkVersion="23"/>
-</manifest>
-EOF
-""".format(custom_package),
-  )
 
   native.android_binary(
       name = name + "_jni",
-      manifest = name + "_generated_AndroidManifest.xml",
       custom_package = "custom_package",
       deps = [android_library],
   )
