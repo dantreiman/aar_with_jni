@@ -1,4 +1,4 @@
-def aar_with_jni(name, android_library, custom_package):
+def aar_with_jni(name, android_library, custom_package="does.not.matter"):
   native.genrule(
       name = name + "_binary_manifest_generator",
       outs = [name + "_generated_AndroidManifest.xml"],
